@@ -21,3 +21,8 @@
   .blog-pagination > .btn {
     border-radius: 2rem;
   }
+
+  .blogEntryImage {
+    max-width: 25%;
+    height: auto;
+}

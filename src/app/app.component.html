@@ -4,28 +4,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <title>Blog Template · Bootstrap</title>
+    <title>Bloggy</title>
   </head>
   <body>
 
-    <!-- is header a component? -->
   <div class="container">
-  <header class="blog-header py-3">
-    <div class="row flex-nowrap justify-content-start align-items-start">
-      <div class="col-10 text-start">
-        <a class="blog-header-logo text-dark" href="#">Da Mannz fam Diary</a>
-      </div>
-      <div class="col-1 d-flex justify-content-end align-items-center">
-        <app-topics></app-topics>
-      </div>
-      <div class="col-1 d-flex justify-content-end align-items-center">
-        <app-users></app-users>
-      </div>
-    </div>
-  </header>
-  <app-entries></app-entries>
+  <app-toolbar (changeUser)="changeUser($event)" (newBlog)="showNewEntry()" ></app-toolbar>
+  <!-- mystery... why 2 way binding required? -->
+  <app-entries [(entries)] = "entries" (entrySelected)="onEntrySelected($event)"></app-entries>
+
+  <hr/>
+
+  <app-reader *ngIf="!newEntry && hasEntry()" [entry] = "selectedEntry"></app-reader>
+  <app-writer (done)="newEntryDone($event)" *ngIf="newEntry" ></app-writer>
 </div>
 
-<app-reader></app-reader>
 </body>
 </html>

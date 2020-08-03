@@ -1,0 +1,15 @@
+<main role="main" class="container" >
+    <div class="row">
+      <div class="col-md-8 blog-main">
+        <div class="blog-post">
+          <h2 class="blog-post-title">{{entry.title}}</h2>
+          <p class="blog-post-meta">{{entry.shortDate()}} by <a href="#">{{entry.user.name}}</a></p>
+          {{entry.body}}
+        </div><!-- /.blog-post -->
+
+        <img [src]="entry.imagePath" class="img-fluid blogEntryImage rounded float-left "/>
+  </div>
+
+    </div><!-- /.row -->
+
+  </main><!-- /.container -->

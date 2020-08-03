@@ -1,0 +1,28 @@
+<main role="main" class="container">
+    <div class="row">
+      <div class="col-md-8 blog-main">
+        <div class="blog-post">
+          <label>title</label>
+          <br/>
+          <input #title class="form-control"/>
+          <br/>
+          <label>summary</label>
+          <input #summary class="form-control"/>
+          <br/>
+          <label>blog</label>
+         <textarea #body class="form-control"></textarea>
+         <br/>
+         <select #topic class="form-control">
+           <option
+            *ngFor="let topic of topics(); let i = index"
+            [ngValue]="topic"
+            [selected] = "i == 0">{{topic.key}}</option>
+         </select>
+        </div><!-- /.blog-post -->
+        <button (click)="saveEntry( title, summary, body, topic )" class="btn btn-primary" >save</button>
+        <button (click)="cancelEntry()" class="btn btn-primary">cancel</button>
+  </div>
+
+    </div><!-- /.row -->
+
+  </main><!-- /.container -->
