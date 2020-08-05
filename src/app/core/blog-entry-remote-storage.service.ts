@@ -3,14 +3,15 @@ import { BlogEntryQuery } from './blog-entry-query';
 import { BlogEntry } from './blog-entry';
 import { Topic } from './Topic';
 import { Injectable } from '@angular/core';
+import { never, Observable } from 'rxjs';
 
 /*
 local http node service that will talk to some storage service for us
 */
 @Injectable()
 export class BlogEntryRemoteStorageService extends BlogEntryService{
-    getEntries(query?: BlogEntryQuery): BlogEntry[] {
-        return [];
+    getEntries(query?: BlogEntryQuery): Observable<BlogEntry[]> {
+        return never();
     }
     addEntry(entry: BlogEntry): void {
         throw new Error("Method not implemented.");

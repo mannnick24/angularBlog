@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { jsonObject, jsonMember } from 'typedjson';
 
 const MILLISINYEAR = 365 * 24 * 60 * 60 * 1000;

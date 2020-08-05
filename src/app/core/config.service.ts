@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 
-import { APP_CONFIG, AppConfig } from '../app-config.module';
+import { environment } from '../../environments/environment';
+
 
 @Injectable()
 export class ConfigService {
@@ -10,9 +11,7 @@ export class ConfigService {
     static REMOTE_STORAGE = "remote";
     static SAMPLES = "samples";
 
-    constructor( @Inject(APP_CONFIG) private config: AppConfig ) {}
-
     get( configProperty: string ) {
-        return this.config[configProperty];
+        return environment[configProperty];
     }
 }

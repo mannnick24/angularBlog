@@ -1,25 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BlogEntry } from './core/blog-entry';
 import { User } from './core/User';
 import { BlogEntryService } from './core/blog-entry.service';
-import { blogEntryServiceProvider } from './core/blog-entry-service.provider';
+import { BlogEntrySelectedService } from './core/blog-entry-selected.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
   // default... needa better way
   currentUser = User.Dad;
   newEntry = false;
-  entries: BlogEntry[];
+  entries: BlogEntry[] = [];
   selectedEntry: BlogEntry;
 
-  constructor( private blogEntryService: BlogEntryService ) {
-    this.entries = blogEntryService.getEntries();
-    this.selectLastEntry();
+  constructor(
+    private blogEntryService: BlogEntryService,
+    private blogEntrySelectedService: BlogEntrySelectedService ) {
   }
 
   changeUser( user: User ) {
@@ -30,31 +30,19 @@ export class AppComponent {
     this.newEntry = !this.newEntry;
   }
 
-  hasEntry()
-  {
-    return this.entries.length > 0;
-  }
+  ngOnInit(): void {
+    this.blogEntryService.getEntries().subscribe(
+      entries => {
+        this.entries = entries;
+      },
+      error => {
+        console.log( `problem retrieving entries ${error}` );
+      }
+    );
 
-  newEntryDone( entry: BlogEntry )
-  {
-    if ( entry )
-    {
-      entry.user = this.currentUser;
-      this.blogEntryService.addEntry( entry );
-      this.selectLastEntry();
-    }
-    this.newEntry = false;
-  }
-
-  selectLastEntry()
-  {
-    if ( this.hasEntry() )
-    {
-      this.selectedEntry = this.entries[ this.entries.length - 1 ];
-    }
-  }
-
-  onEntrySelected( entry: BlogEntry ) {
-    this.selectedEntry = entry;
+    this.blogEntrySelectedService.selected().subscribe(
+      selected => {
+        this.selectedEntry = selected;
+      } );
   }
 }

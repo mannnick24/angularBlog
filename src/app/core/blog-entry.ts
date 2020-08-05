@@ -2,7 +2,7 @@ import { User } from './User';
 import { Topic } from './Topic';
 
 import 'reflect-metadata';
-import { jsonObject, jsonMember } from 'typedjson';
+import { jsonObject, jsonMember, jsonArrayMember } from 'typedjson';
 
 @jsonObject
 export class BlogEntry{
@@ -23,7 +23,7 @@ export class BlogEntry{
     @jsonMember
     link: string;
 
-    @jsonMember
+    @jsonArrayMember(Topic)
     topics: Topic[];
 
     @jsonMember

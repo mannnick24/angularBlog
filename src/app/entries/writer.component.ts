@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { BlogEntry } from '../../core/blog-entry';
+import { BlogEntry } from '../core/blog-entry';
 import { Topic } from 'src/app/core/Topic';
 
 @Component({

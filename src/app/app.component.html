@@ -8,15 +8,14 @@
   </head>
   <body>
 
-  <div class="container">
+<div class="container">
   <app-toolbar (changeUser)="changeUser($event)" (newBlog)="showNewEntry()" ></app-toolbar>
-  <!-- mystery... why 2 way binding required? -->
-  <app-entries [(entries)] = "entries" (entrySelected)="onEntrySelected($event)"></app-entries>
+  <app-entries [entries]="entries"></app-entries>
 
   <hr/>
 
-  <app-reader *ngIf="!newEntry && hasEntry()" [entry] = "selectedEntry"></app-reader>
-  <app-writer (done)="newEntryDone($event)" *ngIf="newEntry" ></app-writer>
+  <app-reader *ngIf="!newEntry && !!selectedEntry" [entry] = "selectedEntry"></app-reader>
+  <app-writer *ngIf="newEntry" ></app-writer>
 </div>
 
 </body>
