@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { BlogEntry } from '../core/blog-entry';
-import { Topic } from 'src/app/core/Topic';
-import { UserService } from '../core/user.service';
-import { User } from '../core/User';
+import { BlogEntry } from '../../model/blog-entry';
+import { Topic } from '../../model/Topic';
+import { UserService } from '../../core/user.service';
+import { User } from '../../model/User';
 
 @Component({
   selector: 'app-writer',

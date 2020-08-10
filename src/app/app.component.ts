@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BlogEntry } from './core/blog-entry';
+import { BlogEntry } from './model/blog-entry';
 import { BlogEntryService } from './core/blog-entry.service';
 import { BlogEntrySelectedService } from './core/blog-entry-selected.service';
 

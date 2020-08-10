@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { EntriesBase } from '../core/entries-base';
-import { BlogEntryService } from '../core/blog-entry.service';
-import { BlogEntrySelectedService } from '../core/blog-entry-selected.service';
-import { BlogEntry } from '../core/blog-entry';
+import { EntriesBase } from '../../shared/entries-base';
+import { BlogEntryService } from '../../core/blog-entry.service';
+import { BlogEntrySelectedService } from '../../core/blog-entry-selected.service';
+import { BlogEntry } from '../../model/blog-entry';
 
 @Component({
   selector: 'app-entries-list',

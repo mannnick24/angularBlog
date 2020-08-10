@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EntriesBase } from '../core/entries-base';
-import { BlogEntryService } from '../core/blog-entry.service';
+import { EntriesBase } from '../../shared/entries-base';
+import { BlogEntryService } from '../../core/blog-entry.service';
 @Component({
   selector: 'app-entries',
   templateUrl: './entries.component.html',

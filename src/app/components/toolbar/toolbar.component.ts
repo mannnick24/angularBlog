@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { User } from '../core/User';
-import { UserService } from '../core/user.service';
+import { User } from '../../model/User';
+import { UserService } from '../../core/user.service';
 
 @Component({
   selector: 'app-toolbar',

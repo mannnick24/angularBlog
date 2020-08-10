@@ -1,6 +1,6 @@
-import { BlogEntryService } from './blog-entry.service';
-import { BlogEntrySelectedService } from './blog-entry-selected.service';
-import { BlogEntry } from './blog-entry';
+import { BlogEntryService } from '../core/blog-entry.service';
+import { BlogEntrySelectedService } from '../core/blog-entry-selected.service';
+import { BlogEntry } from '../model/blog-entry';
 
 export abstract class EntriesBase {
     public entries: BlogEntry[];

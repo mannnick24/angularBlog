@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { BlogEntry } from '../core/blog-entry';
-import { BlogEntrySelectedService } from '../core/blog-entry-selected.service';
-import { BlogEntryService } from '../core/blog-entry.service';
+import { BlogEntry } from '../../model/blog-entry';
+import { BlogEntrySelectedService } from '../../core/blog-entry-selected.service';
+import { BlogEntryService } from '../../core/blog-entry.service';
 
 @Component({
   selector: 'app-entry',

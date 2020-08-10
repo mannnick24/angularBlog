@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { BlogEntry } from '../core/blog-entry';
+import { BlogEntry } from '../../model/blog-entry';
 
 @Component({
   selector: 'app-reader',

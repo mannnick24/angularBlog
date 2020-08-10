@@ -1,5 +1,5 @@
-import { Topic } from './Topic';
-import { User } from './User';
+import { Topic } from '../model/Topic';
+import { User } from '../model/User';
 
 export class BlogEntryQuery {
     readonly topics: Topic[] = [];

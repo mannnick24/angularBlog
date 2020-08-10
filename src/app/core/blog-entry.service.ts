@@ -1,6 +1,6 @@
-import { BlogEntry } from './blog-entry';
+import { BlogEntry } from '../model/blog-entry';
 import { BlogEntryQuery } from './blog-entry-query';
-import { Topic } from './Topic';
+import { Topic } from '../model/Topic';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BlogEntrySampleService } from './blog-entry-sample.service';

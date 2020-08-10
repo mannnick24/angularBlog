@@ -3,7 +3,7 @@ import { Topic } from './Topic';
 
 import 'reflect-metadata';
 import { jsonObject, jsonMember, jsonArrayMember } from 'typedjson';
-import { UserService } from './user.service';
+import { UserService } from '../core/user.service';
 
 @jsonObject
 export class BlogEntry{

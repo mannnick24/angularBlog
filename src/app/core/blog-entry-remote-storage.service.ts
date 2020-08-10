@@ -1,7 +1,7 @@
 import { BlogEntryService } from './blog-entry.service';
 import { BlogEntryQuery } from './blog-entry-query';
-import { BlogEntry } from './blog-entry';
-import { Topic } from './Topic';
+import { BlogEntry } from '../model/blog-entry';
+import { Topic } from '../model/Topic';
 import { Injectable } from '@angular/core';
 import { never, Observable } from 'rxjs';
 
@@ -22,7 +22,7 @@ export class BlogEntryRemoteStorageService extends BlogEntryService{
     editEntry(entry: BlogEntry): void {
         throw new Error("Method not implemented.");
     }
-    getTopics(): import("./Topic").Topic[] {
+    getTopics(): Topic[] {
         throw new Error("Method not implemented.");
     }
     addTopic(topic: Topic): void {

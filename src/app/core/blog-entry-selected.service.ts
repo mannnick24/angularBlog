@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { BlogEntry } from './blog-entry';
+import { BlogEntry } from '../model/blog-entry';
 
 @Injectable()
 export class BlogEntrySelectedService {

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { UserService } from './user.service';
-import { BlogEntry } from './blog-entry';
-import { Topic } from './Topic';
+import { BlogEntry } from '../model/blog-entry';
+import { Topic } from '../model/Topic';
 
 @Injectable()
 export class BlogEntrySampleService {
