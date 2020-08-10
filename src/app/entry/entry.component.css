@@ -1,5 +1,7 @@
 .blogEntryImage {
     max-width: 30%;
     height: auto;
-
 }
+.close-icon {
+    cursor: pointer;
+  }

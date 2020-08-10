@@ -1,0 +1,14 @@
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Title</th>
+            <th>User</th>
+            <th>Topic</th>
+        </tr>
+    </thead>
+    <tr *ngFor="let entry of entries" (click)="selectEntry(entry)">
+        <td>{{entry.title}}</td>
+        <td>{{entry.user.name}}</td>
+        <td>{{entry.topics[0].key}}</td>
+    </tr>
+  </table>

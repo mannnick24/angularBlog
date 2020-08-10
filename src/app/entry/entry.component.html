@@ -1,0 +1,15 @@
+
+<div class="card card-outline-danger">
+  <span class="pull-right clickable close-icon" data-effect="fadeOut" (click)=removeEntry(entry)><i class="fa fa-times"></i></span>
+  <a (click)="selectEntry(entry)">
+    <div class="card-body">
+      <h5 class="card-title">{{entry.title}}</h5>
+      <p class="card-text">{{entry.summary}}</p>
+      <img [src]="entry.imagePath" class="img-fluid blogEntryImage"/>
+      <div class="card-footer">
+        <small class="text-muted">{{entry.shortDate()}}</small>
+        <small class=" card-text float-right">{{entry.user.name}}</small>
+      </div>
+    </div>
+  </a>
+</div>

@@ -1,7 +1,22 @@
 <header class="blog-header py-3">
     <div class="row flex-nowrap justify-content-start align-items-start">
-      <div class="col-9 text-start">
+      <div class="col-4 text-start">
         <img src="./assets/blog.png" width=50/>
+      </div>
+
+      <div class="col-5 d-flex justify-content-center align-items-center">
+        <ul class="nav">
+          <li role="presentation" class="nav-item active">
+            <a href="#" routerLink="/grid" class="nav-link">
+              <img src="./assets/grid.png" height="40"/>
+            </a>
+          </li>
+          <li role="presentation" class="nav-item active">
+            <a href="#" routerLink="/list" class="nav-link">
+              <img src="./assets/list.png" height="40"/>
+            </a>
+          </li>
+        </ul>
       </div>
 
       <div class="col-1 d-flex justify-content-end align-items-center">
@@ -14,7 +29,7 @@
       <div class="col-1 d-flex justify-content-end align-items-center">
         <button
         class="btn btn-primary"
-        (click)="showNewEntry()">new</button>
+        (click)="toggleNewEntry()">new</button>
       </div>
       <!-- TODO add search functionality -->
     <!-- div class="col-1 d-flex justify-content-end align-items-center" [inlineSVG]="'assets/search.svg'"></div-->

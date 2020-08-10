@@ -2,6 +2,8 @@
     <div class="row">
       <div class="col-md-8 blog-main">
         <div class="blog-post">
+           {{currentUser.name}}
+           <br/>
           <label>title</label>
           <br/>
           <input #title class="form-control"/>
@@ -9,6 +11,17 @@
           <label>summary</label>
           <input #summary class="form-control"/>
           <br/>
+          <label>picture</label>
+          <ngx-dropzone
+            (change)="onSelect($event)"
+            [accept]="'image/x-png,image/gif,image/jpeg'"
+            [multiple]="false">
+            <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
+              <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+            </ngx-dropzone-image-preview>
+          </ngx-dropzone>
+
           <label>blog</label>
          <textarea #body class="form-control"></textarea>
          <br/>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogEntry } from './core/blog-entry';
-import { User } from './core/User';
 import { BlogEntryService } from './core/blog-entry.service';
 import { BlogEntrySelectedService } from './core/blog-entry-selected.service';
 
@@ -11,9 +10,7 @@ import { BlogEntrySelectedService } from './core/blog-entry-selected.service';
 })
 export class AppComponent implements OnInit{
 
-  // default... needa better way
-  currentUser = User.Dad;
-  newEntry = false;
+  showNewEntry = false;
   entries: BlogEntry[] = [];
   selectedEntry: BlogEntry;
 
@@ -22,24 +19,16 @@ export class AppComponent implements OnInit{
     private blogEntrySelectedService: BlogEntrySelectedService ) {
   }
 
-  changeUser( user: User ) {
-    this.currentUser = user;
+  toggleNewEntry() {
+    this.showNewEntry = !this.showNewEntry;
   }
 
-  showNewEntry() {
-    this.newEntry = !this.newEntry;
+  newEntry( entry: BlogEntry ) {
+    this.blogEntryService.addEntry( entry );
+    this.toggleNewEntry();
   }
 
   ngOnInit(): void {
-    this.blogEntryService.getEntries().subscribe(
-      entries => {
-        this.entries = entries;
-      },
-      error => {
-        console.log( `problem retrieving entries ${error}` );
-      }
-    );
-
     this.blogEntrySelectedService.selected().subscribe(
       selected => {
         this.selectedEntry = selected;

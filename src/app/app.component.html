@@ -9,13 +9,12 @@
   <body>
 
 <div class="container">
-  <app-toolbar (changeUser)="changeUser($event)" (newBlog)="showNewEntry()" ></app-toolbar>
-  <app-entries [entries]="entries"></app-entries>
-
+  <app-toolbar (newBlog)="toggleNewEntry()" ></app-toolbar>
+  <router-outlet></router-outlet>
   <hr/>
 
-  <app-reader *ngIf="!newEntry && !!selectedEntry" [entry] = "selectedEntry"></app-reader>
-  <app-writer *ngIf="newEntry" ></app-writer>
+  <app-reader *ngIf="!showNewEntry && !!selectedEntry" [entry] = "selectedEntry"></app-reader>
+  <app-writer *ngIf="showNewEntry" (done)="newEntry( $event )"></app-writer>
 </div>
 
 </body>

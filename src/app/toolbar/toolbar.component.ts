@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { User } from '../core/User';
+import { UserService } from '../core/user.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -8,25 +9,27 @@ import { User } from '../core/User';
 })
 export class ToolbarComponent implements OnInit {
   @Output() newBlog = new EventEmitter();
-  @Output() changeUser = new EventEmitter<User>();
+  selectedUser: User;
+  users: User[];
 
-  selectedUser = User.Dad ;
-  users = User.users;
-
-  constructor() { }
+  constructor( private userService: UserService ) {
+    // currently static
+    this.users = this.userService.getUsers();
+    this.userService.currentUser().subscribe( user => {
+      this.selectedUser = user;
+    } );
+  }
 
   userChanged( user: User )
   {
-    this.selectedUser = user;
-    this.changeUser.emit( this.selectedUser );
+    this.userService.setCurrentUser( user );
   }
 
-  showNewEntry()
+  toggleNewEntry()
   {
     this.newBlog.emit();
   }
 
   ngOnInit(): void {
   }
-
 }

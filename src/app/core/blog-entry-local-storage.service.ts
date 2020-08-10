@@ -7,6 +7,7 @@ import { TypedJSON } from 'typedjson';
 import { ConfigService } from './config.service';
 import { LocalStorageService } from './local-storage.service';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { BlogEntrySampleService } from './blog-entry-sample.service';
 
 const  BLOG_KEY = "blog-entry";
 const TOPIC_KEY = "blog-topic";
@@ -22,10 +23,12 @@ export class BlogEntryLocalStorageService extends BlogEntryService{
 
     constructor(
         private localStorage: LocalStorageService,
-        private configService: ConfigService ) {
-        super();
-        this.loadEntries();
+        private configService: ConfigService,
+        blogEntrySampleService: BlogEntrySampleService ) {
 
+        super( blogEntrySampleService );
+        //this.localStorage.removeItem( BLOG_KEY );
+        this.loadEntries();
     }
 
     getTopics(): Topic[] {
@@ -68,10 +71,8 @@ export class BlogEntryLocalStorageService extends BlogEntryService{
     private initStore() {
         this.dataStore.entries = [];
 
-        if ( this.configService.get( ConfigService.SAMPLES ) ) {
-            // todo delegate
-            this.addEntry( BlogEntry.sample1() );
-            this.addEntry( BlogEntry.sample2() )
+        if ( this.configService.get( ConfigService.SAMPLES_PROP ) ) {
+            this.addSamples();
         }
     }
 
@@ -83,23 +84,41 @@ export class BlogEntryLocalStorageService extends BlogEntryService{
     // must be a better way
     addEntry( entry: BlogEntry ): void {
         this.dataStore.entries.push( entry );
+        const failHandler = () => {
+            // pop the failed update (race condition may not be last)
+            const index = this.dataStore.entries.indexOf( entry );
+            this.dataStore.entries.splice( index, 1 );
+        };
+        this.persistStore( failHandler );
+    }
+
+    removeEntry( entry: BlogEntry ): BlogEntry {
+        const storeIndex = this.dataStore.entries.indexOf( entry );
+        if ( storeIndex === -1 )
+        {
+            return null;
+        }
+        this.dataStore.entries.splice( storeIndex, 1 );
+        this.persistStore();
+        return entry;
+    }
+
+    editEntry( entry: BlogEntry ): void {
+        throw new Error("Method not implemented.");
+    }
+
+    private persistStore( handleError?: Function ) {
         const dataStoreString = this.blogEntrySerializer.stringifyAsArray( this.dataStore.entries );
         this.localStorage.setItem( BLOG_KEY, dataStoreString ).subscribe(
             _ => {
                 this.entries.next( this.dataStore.entries );
             },
             error => {
-                // pop the failed update (race condition may not be last)
-                const index = this.dataStore.entries.indexOf( entry );
-                this.dataStore.entries.splice( index, 1 );
-                console.log( `failed to add entrys ${error}` );
+                console.log( `failed to persist store ${error}` );
+                if ( handleError ) {
+                    handleError.apply( this );
+                }
             }
         );
-    }
-    removeEntry( entry: BlogEntry ): BlogEntry {
-        throw new Error("Method not implemented.");
-    }
-    editEntry( entry: BlogEntry ): void {
-        throw new Error("Method not implemented.");
     }
 }
